@@ -1,7 +1,0 @@
-package com.mindlink.exceptions.postExceptions;
-
-public class PostNotFoundException extends RuntimeException {
-    public PostNotFoundException(String message) {
-        super(message);
-    }
-}
