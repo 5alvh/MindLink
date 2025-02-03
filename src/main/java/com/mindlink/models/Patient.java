@@ -15,10 +15,11 @@ import java.time.LocalDate;
 @Setter
 public class Patient extends User {
 
+    public Patient() {
+    }
 
-    public Patient() {}
-
-    public Patient(String firstName, String lastName, String email, String password, LocalDate dateOfBirth, Gender gender) {
+    public Patient(String firstName, String lastName, String email, String password, LocalDate dateOfBirth,
+            Gender gender) {
         super(firstName, lastName, email, password, UserRole.PATIENT, dateOfBirth, gender);
     }
 }
