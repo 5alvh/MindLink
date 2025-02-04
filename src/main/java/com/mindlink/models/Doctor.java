@@ -17,13 +17,16 @@ public class Doctor extends User {
 
     private String specialization;
     private String licenseNumber;
+    private Double priceHour;
 
-    public Doctor() {}
+    public Doctor() {
+    }
 
-    public Doctor(String firstName, String lastName, String email, String password, LocalDate dateOfBirth, Gender gender, String specialization, String licenseNumber) {
+    public Doctor(String firstName, String lastName, String email, String password, LocalDate dateOfBirth,
+            Gender gender, String specialization, String licenseNumber, Double priceHour) {
         super(firstName, lastName, email, password, UserRole.DOCTOR, dateOfBirth, gender);
         this.specialization = specialization;
         this.licenseNumber = licenseNumber;
+        this.priceHour = priceHour;
     }
 }
-

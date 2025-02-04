@@ -17,10 +17,11 @@ public class UserServiceImpl implements UserService {
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository,PasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
+
     @Override
     public void createPatient(PatientRegistrationRequest request) {
 
@@ -30,8 +31,7 @@ public class UserServiceImpl implements UserService {
                 request.getEmail(),
                 passwordEncoder.encode(request.getPassword()),
                 request.getDateOfBirth(),
-                request.getGender()
-        );
+                request.getGender());
 
         userRepository.save(patient);
     }
@@ -47,8 +47,8 @@ public class UserServiceImpl implements UserService {
                 request.getDateOfBirth(),
                 request.getGender(),
                 request.getSpecialization(),
-                request.getLicenseNumber()
-        );
+                request.getLicenseNumber(),
+                request.getPriceHour());
 
         userRepository.save(doctor);
     }
