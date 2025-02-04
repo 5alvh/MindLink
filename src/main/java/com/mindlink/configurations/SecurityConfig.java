@@ -25,7 +25,7 @@ public class SecurityConfig {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
     public SecurityConfig(CustomUserDetailsService userDetailsService,
-                          JwtAuthenticationFilter jwtAuthenticationFilter) {
+            JwtAuthenticationFilter jwtAuthenticationFilter) {
         this.userDetailsService = userDetailsService;
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
     }
@@ -45,11 +45,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "blog/**").hasAnyRole("DOCTOR", "PATIENT")
                         .requestMatchers("comment/**").hasAnyRole("DOCTOR", "PATIENT")
                         .requestMatchers("like/**").hasAnyRole("DOCTOR", "PATIENT")
-                        .anyRequest().authenticated()
-                )
-                .sessionManagement(session ->
-                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                )
+                        .requestMatchers("appointments/**").hasAnyRole("DOCTOR", "PATIENT")
+                        .anyRequest().authenticated())
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }

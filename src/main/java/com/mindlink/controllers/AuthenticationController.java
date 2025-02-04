@@ -30,9 +30,9 @@ public class AuthenticationController {
     private final UserServiceImpl userServiceImpl;
 
     public AuthenticationController(AuthenticationManager authenticationManager,
-                                    UserRepository userRepository,
-                                    JwtService jwtService,
-                                    UserServiceImpl userServiceImpl) {
+            UserRepository userRepository,
+            JwtService jwtService,
+            UserServiceImpl userServiceImpl) {
         this.authenticationManager = authenticationManager;
         this.userRepository = userRepository;
         this.jwtService = jwtService;
@@ -44,9 +44,7 @@ public class AuthenticationController {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
-                        request.getPassword()
-                )
-        );
+                        request.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         UserDetails user = (UserDetails) authentication.getPrincipal();
         String jwtToken = jwtService.generateToken(user);
@@ -76,4 +74,3 @@ public class AuthenticationController {
         return ResponseEntity.ok("Doctor registered successfully");
     }
 }
-

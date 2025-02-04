@@ -29,6 +29,8 @@ import com.mindlink.services.PatientService;
 import com.mindlink.services.PaymentService;
 import com.mindlink.services.RoomService;
 
+import jakarta.transaction.Transactional;
+
 /**
  * @autor MadTore
  */
@@ -68,6 +70,7 @@ public class AppointmentServiceImpl implements AppointmentService {
         }
     }
 
+    @Override
     public AppointmentRegistrationDTO createAppointment(AppointmentRegistrationDTO appointmentDTO) {
         if (!isAppointmentHourValid(appointmentDTO.appointmentDate(), appointmentDTO.doctorEmail())) {
             throw new AppontmentExeptions("Appointment hour is not valid");

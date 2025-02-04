@@ -19,8 +19,11 @@ import jakarta.transaction.Transactional;
 @Service
 public class RoomServiceImpl implements RoomService {
 
-    @Autowired
     private RoomRepository roomRepository;
+
+    public RoomServiceImpl(RoomRepository roomRepository) {
+        this.roomRepository = roomRepository;
+    }
 
     @Transactional
     @Override
@@ -30,6 +33,7 @@ public class RoomServiceImpl implements RoomService {
         room.setAppointment(appointment);
         room.setCreatedAt(LocalDate.now());
         return roomRepository.save(room);
+
     }
 
     @Override
