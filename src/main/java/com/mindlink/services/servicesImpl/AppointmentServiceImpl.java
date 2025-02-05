@@ -70,6 +70,7 @@ public class AppointmentServiceImpl implements AppointmentService {
         }
     }
 
+    @Transactional
     @Override
     public AppointmentRegistrationDTO createAppointment(AppointmentRegistrationDTO appointmentDTO) {
         if (!isAppointmentHourValid(appointmentDTO.appointmentDate(), appointmentDTO.doctorEmail())) {

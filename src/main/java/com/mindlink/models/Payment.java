@@ -15,7 +15,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import jakarta.persistence.CascadeType;
 
 @Data
 @AllArgsConstructor
@@ -34,7 +33,8 @@ public class Payment {
     private Patient patient;
     @NotNull
     private Double totalAmount;
-    @OneToOne(cascade = CascadeType.PERSIST)
+
+    @OneToOne
     @JoinColumn(name = "appointment_id", referencedColumnName = "id", nullable = false)
     private Appointment appointment;
 
