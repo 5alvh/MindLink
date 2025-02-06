@@ -150,9 +150,11 @@ public class AppointmentServiceImpl implements AppointmentService {
     private boolean isAppointmentHourValid(LocalDateTime appointementDateTime, String doctorEmail) {
         LocalDateTime appointmentTime = appointementDateTime;
         LocalDateTime now = LocalDateTime.now();
+
         if (appointmentTime.isBefore(now)) {
             return false;
         }
+
         List<AppointmentDTO> appointments = getAppointmentByDoctorEmail(doctorEmail);
         LocalDateTime oneHourBefore = appointmentTime.minusHours(1);
         LocalDateTime oneHourAfter = appointmentTime.plusHours(1);

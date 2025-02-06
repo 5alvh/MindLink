@@ -2,6 +2,9 @@ package com.mindlink.services.servicesImpl;
 
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.mindlink.mappers.DoctorMapper;
@@ -33,6 +36,12 @@ public class DoctorServiceImpl implements DoctorService {
         } else {
             throw new RuntimeException("Patient not found");
         }
+    }
+
+    @Override
+    public Page<DoctorDTO> getDoctors(int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo, pageSize);
+        return doctorRepository.findAll(pageable).map(DoctorMapper::doctorToDTo);
     }
 
 }
