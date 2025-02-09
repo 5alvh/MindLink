@@ -7,8 +7,10 @@ import lombok.Getter;
 public record LoginRequest(
         @Email
         @NotBlank
+        @Getter
         String email,
 
         @NotBlank
+        @Getter
         String password
 ) {}

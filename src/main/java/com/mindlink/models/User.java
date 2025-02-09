@@ -57,6 +57,11 @@ public abstract class User implements UserDetails {
     }
 
     @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
     public boolean isAccountNonExpired() {
         return true;
     }

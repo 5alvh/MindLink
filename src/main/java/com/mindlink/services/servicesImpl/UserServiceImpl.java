@@ -26,12 +26,12 @@ public class UserServiceImpl implements UserService {
     public void createPatient(PatientRegistrationRequest request) {
 
         Patient patient = new Patient(
-                request.getFirstName(),
-                request.getLastName(),
-                request.getEmail(),
-                passwordEncoder.encode(request.getPassword()),
-                request.getDateOfBirth(),
-                request.getGender());
+                request.firstName(),
+                request.lastName(),
+                request.email(),
+                passwordEncoder.encode(request.password()),
+                request.dateOfBirth(),
+                request.gender());
 
         userRepository.save(patient);
     }
@@ -40,15 +40,15 @@ public class UserServiceImpl implements UserService {
     public void createDoctor(DoctorRegistrationRequest request) {
 
         Doctor doctor = new Doctor(
-                request.getFirstName(),
-                request.getLastName(),
-                request.getEmail(),
-                passwordEncoder.encode(request.getPassword()),
-                request.getDateOfBirth(),
-                request.getGender(),
-                request.getSpecialization(),
-                request.getLicenseNumber(),
-                request.getPriceHour());
+                request.firstName(),
+                request.lastName(),
+                request.email(),
+                passwordEncoder.encode(request.password()),
+                request.dateOfBirth(),
+                request.gender(),
+                request.specialization(),
+                request.licenseNumber(),
+                request.priceHour());
 
         userRepository.save(doctor);
     }

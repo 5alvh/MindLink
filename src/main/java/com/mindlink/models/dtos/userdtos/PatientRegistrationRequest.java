@@ -11,27 +11,21 @@ import java.time.LocalDate;
 
 public record PatientRegistrationRequest(
         @NotBlank
-        @Getter
         String firstName,
 
         @NotBlank
-        @Getter
         String lastName,
 
         @Email
         @NotBlank
-        @Getter
         String email,
 
         @Size(min = 8)
         @NotBlank
-        @Getter
         String password,
 
         @Past
-        @Getter
         LocalDate dateOfBirth,
 
-        @Getter
         Gender gender
 ) {}

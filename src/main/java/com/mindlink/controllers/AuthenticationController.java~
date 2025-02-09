@@ -72,13 +72,11 @@ public class AuthenticationController {
     @PostMapping("/register/doctor")
     public ResponseEntity<?> registerDoctor(@Valid @RequestBody DoctorRegistrationRequest request) {
         if (userRepository.existsByEmail(request.email())) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(Map.of("message", "Email already in use"));
+            return ResponseEntity.badRequest().body("Email already in use");
         }
 
         userServiceImpl.createDoctor(request);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(Map.of("message","Doctor registered successfully"));
+        return ResponseEntity.ok("Doctor registered successfully");
     }
 }
