@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -51,7 +52,12 @@ public class AuthenticationController {
         UserDetails user = (UserDetails) authentication.getPrincipal();
         String jwtToken = jwtService.generateToken(user);
 
-        return ResponseEntity.ok(new AuthResponse(jwtToken));
+        String role = user.getAuthorities().stream()
+                .findFirst()
+                .map(GrantedAuthority::getAuthority)
+                .orElse("USER");
+
+        return ResponseEntity.ok(new AuthResponse(jwtToken, request.email(), role));
     }
 
     @PostMapping("/register/patient")
