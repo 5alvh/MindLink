@@ -48,6 +48,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/doctor/**").hasAnyRole("DOCTOR", "PATIENT")
                         .requestMatchers(HttpMethod.POST, "/appointments/create").hasAnyRole("PATIENT")
                         .requestMatchers(HttpMethod.GET, "/appointments/**").hasAnyRole("DOCTOR", "PATIENT")
+                        .requestMatchers(HttpMethod.GET, "/room/url").hasAnyRole("DOCTOR", "PATIENT")
                         .requestMatchers("/user/doctor/**").hasRole("DOCTOR")
                         .requestMatchers("/user/patient/**").hasRole("PATIENT")
                         .requestMatchers("/comment/**").hasAnyRole("DOCTOR", "PATIENT")
