@@ -46,8 +46,10 @@ public class SecurityConfig {
                         .requestMatchers("/blog/**").permitAll()
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/doctor/**").hasAnyRole("DOCTOR", "PATIENT")
-                        .requestMatchers("/doctor/**").hasRole("DOCTOR")
-                        .requestMatchers("/patient/**").hasRole("PATIENT")
+                        .requestMatchers(HttpMethod.POST, "/appointments/create").hasAnyRole("PATIENT")
+                        .requestMatchers(HttpMethod.GET, "/appointments/**").hasAnyRole("DOCTOR", "PATIENT")
+                        .requestMatchers("/user/doctor/**").hasRole("DOCTOR")
+                        .requestMatchers("/user/patient/**").hasRole("PATIENT")
                         .requestMatchers("/comment/**").hasAnyRole("DOCTOR", "PATIENT")
                         .requestMatchers("/like/**").hasAnyRole("DOCTOR", "PATIENT")
                         .requestMatchers("/appointments/**").hasAnyRole("DOCTOR", "PATIENT")
@@ -56,7 +58,6 @@ public class SecurityConfig {
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
-
 
     @Bean
     public PasswordEncoder passwordEncoder() {

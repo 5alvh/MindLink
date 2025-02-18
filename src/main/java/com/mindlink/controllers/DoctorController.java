@@ -30,5 +30,4 @@ public class DoctorController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
 }
